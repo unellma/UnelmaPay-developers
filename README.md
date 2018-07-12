@@ -1,6 +1,21 @@
 # e-Khalti-developers
 
-IPN notifications
+# Documentation
+
+## POST form for payment
+
+|Variable     |	Description  |	Conditions    |	Necessarily|
+| ------------- | ------------- | ------------- |------------ |
+|merchant|	Merchant ID in the system e-Khalti. Assigned to the merchant automatically after adding a store to your account. | Your store must be moderated	Not equal to 0|	Yes|
+|item_name|	Product name or purpose of payment. This item is visible to the payer|	Minimum number of characters 3, maximum - 100|	Yes|
+|amount	| The sum in any form. The sum is rounded to decimal places. The total amount including commission will be calculated automatically|	Sum is more than 1|	Yes
+|currency|	Currency of payment. Available currencies debit_base, debit_extra1, debit_extra2, debit_extra3, debit_extra4, debit_extra5	|Only values from the list	|Yes|
+|custom|	Comment to the payment. For example, the order number in your store. This item is not displayed to the buyer|	Maximum - 100|	Yes|
+
+
+
+
+## IPN notifications
 
 | Variable      | Description   | Example    |
 | ------------- | ------------- | ------------- |
