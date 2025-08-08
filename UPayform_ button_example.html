@@ -1,0 +1,43 @@
+<!-- Publish on your site -->
+<form method="POST" action="https://dev.unelmapay.com/sci/form" target="_blank">
+  <input type="hidden" name="merchant" value="7">
+  <input type="hidden" name="item_name" value="Testing payment">
+  <input type="hidden" name="amount" value="112">
+  <input type="hidden" name="currency" value="debit_base">
+  <input type="hidden" name="custom" value="comment">
+  <button type="submit" class="upay-button">Pay with UPay!</button>
+</form>
+
+<style>
+.upay-button {
+  background: linear-gradient(90deg, #6B3FA0, #8A2BE2);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  text-align: center;
+}
+
+.upay-button:hover {
+  background: linear-gradient(90deg, #5A2F8A, #7B1ED1);
+  transform: translateY(-2px);
+}
+
+.upay-button:active {
+  transform: translateY(0);
+}
+
+.upay-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 63, 160, 0.3);
+}
+</style>
