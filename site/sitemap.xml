@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://docs.unelmapay.com/</loc>
+         <lastmod>2025-08-09</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.unelmapay.com/api/ipn-callback/</loc>
+         <lastmod>2025-08-09</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.unelmapay.com/api/payment-form/</loc>
+         <lastmod>2025-08-09</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.unelmapay.com/getting-started/overview/</loc>
+         <lastmod>2025-08-09</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.unelmapay.com/guides/testing/</loc>
+         <lastmod>2025-08-09</lastmod>
+    </url>
+</urlset>

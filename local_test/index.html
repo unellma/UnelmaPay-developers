@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnelmaPay Local Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #debugInfo {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .error {
+            color: #a94442;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .warning {
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border: 1px solid #faebcc;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .debug-section {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+        }
+        .debug-section h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .form-actions {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>UnelmaPay Local Test</h1>
+    <p>This is a test page for local development. The form will submit to your local UnelmaPay instance.</p>
+    
+    <form id="paymentForm" action="http://localhost:8088/sci/form" method="POST" style="max-width: 800px; margin: 0 auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+        <h2 style="text-align: center; margin-bottom: 20px;">Test Payment Form</h2>
+        <p style="text-align: center;">This form is configured to use merchant ID 3 (UnelmaHost) which has status=2 (confirmed) and test_mode=0.</p>
+        
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Merchant ID (must be > 0):</label>
+            <input type="number" name="merchant" value="7" min="1" step="1" required 
+                   style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+            <small>Try merchant ID 7 which is known to work</small>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Item Name (3-100 chars):</label>
+            <input type="text" name="item_name" value="Test Product" minlength="3" maxlength="100" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Amount (must be > 1):</label>
+            <input type="number" name="amount" value="2.00" min="1.01" step="0.01" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Currency:</label>
+            <select name="currency" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                <option value="debit_base" selected>Base Currency</option>
+                <option value="debit_extra1">Extra 1</option>
+                <option value="debit_extra2">Extra 2</option>
+                <option value="debit_extra3">Extra 3</option>
+                <option value="debit_extra4">Extra 4</option>
+                <option value="debit_extra5">Extra 5</option>
+            </select>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Custom Data (max 100 chars):</label>
+            <input type="text" name="custom" value="test123" maxlength="100" required
+                   style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+        </div>
+        
+        <div style="text-align: center; margin: 25px 0;">
+            <button type="submit" class="upay-button" id="submitBtn" style="background: #6c5ce7; color: white; border: none; padding: 12px 30px; border-radius: 25px; font-size: 16px; cursor: pointer; transition: all 0.3s ease;">
+                Pay with UPay!
+            </button>
+        </div>
+        
+        <div id="debugInfo" style="margin-top: 30px; padding: 15px; background: #f0f0f0; border-radius: 4px; display: none;">
+            <h3 style="margin-top: 0; color: #333;">Debug Information</h3>
+            <div id="formData" style="margin-bottom: 15px; padding: 10px; background: white; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; white-space: pre-wrap;"></div>
+            <div id="validationErrors" style="color: #dc3545; margin-bottom: 15px; padding: 10px; background: white; border: 1px solid #f5c6cb; border-radius: 4px; display: none;"></div>
+            <div id="curlCommand" style="margin-top: 15px; padding: 10px; background: #e9ecef; border-radius: 4px; font-family: monospace; white-space: pre-wrap; display: none;"></div>
+        </div>
+    </form>
+    
+    <div id="debugInfo">
+        <div class="warning">
+            <p><strong>Debug Information</strong></p>
+            <p>Form submissions and validation results will appear here.</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show debug info
+            document.getElementById('debugInfo').style.display = 'block';
+            
+            // Update form data display
+            function updateFormData() {
+                const form = document.getElementById('paymentForm');
+                const formData = new FormData(form);
+                const formDataObj = {};
+                formData.forEach((value, key) => {
+                    formDataObj[key] = value;
+                });
+                document.getElementById('formData').textContent = JSON.stringify(formDataObj, null, 2);
+                
+                // Generate cURL command
+                let curlCmd = 'curl -X POST \\\n';
+                curlCmd += '  "http://localhost:8088/sci/form" \\\\n';
+                curlCmd += '  -H "Content-Type: application/x-www-form-urlencoded" \\\\n';
+                curlCmd += '  -d "';
+                const params = [];
+                for (let [key, value] of formData.entries()) {
+                    params.push(`${key}=${encodeURIComponent(value)}`);
+                }
+                curlCmd += params.join('&') + '" \\\\n';
+                curlCmd += '  -v';
+                document.getElementById('curlCommand').textContent = curlCmd;
+                document.getElementById('curlCommand').style.display = 'block';
+            }
+            
+            // Update form data on any change
+            const form = document.getElementById('paymentForm');
+            const debugInfo = document.getElementById('debugInfo');
+            const submitBtn = document.getElementById('submitBtn');
+            const testBtn = document.getElementById('testBtn');
+            
+            // Set up event listeners
+            form.addEventListener('input', updateFormData);
+            updateFormData(); // Initial update
+            
+            // Show debug info by default
+            debugInfo.style.display = 'block';
+            
+            // Format form data for display
+            function formatFormData(formData) {
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                return data;
+            }
+            
+            // Generate cURL command
+            function generateCurlCommand(formData) {
+                let curl = 'curl -X POST \\\n';
+                curl += '  "http://localhost:8088/sci/form" \\\\n';
+                curl += '  -H "Content-Type: application/x-www-form-urlencoded" \\\\n';
+                curl += '  -d "';
+                
+                const params = [];
+                formData.forEach((value, key) => {
+                    params.push(`${key}=${encodeURIComponent(value)}`);
+                });
+                
+                curl += params.join('&');
+                curl += '" -v';
+                
+                return curl;
+            }
+            
+            // Display debug information
+            function showDebugInfo(title, content, type = 'info') {
+                const debugSection = document.createElement('div');
+                debugSection.className = `debug-section ${type}`;
+                
+                let contentHtml = '';
+                if (typeof content === 'string') {
+                    contentHtml = content;
+                } else {
+                    contentHtml = `<pre>${JSON.stringify(content, null, 2)}</pre>`;
+                }
+                
+                debugSection.innerHTML = `
+                    <h3>${title}</h3>
+                    <div>${contentHtml}</div>
+                `;
+                
+                debugInfo.insertBefore(debugSection, debugInfo.firstChild);
+                
+                // Remove old debug sections if there are too many
+                const sections = debugInfo.querySelectorAll('.debug-section');
+                if (sections.length > 5) {
+                    debugInfo.removeChild(sections[sections.length - 1]);
+                }
+            }
+            
+            // Form submission handler
+            form.addEventListener('submit', function(e) {
+                // Don't prevent default - let the form submit normally
+                // This avoids CORS issues
+                
+                // Show loading state
+                const submitBtn = document.getElementById('submitBtn');
+                const originalBtnText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing...';
+                
+                // Clear previous errors
+                document.getElementById('validationErrors').style.display = 'none';
+                
+                // Get form data for display
+                const formData = new FormData(form);
+                const formDataObj = {};
+                formData.forEach((value, key) => {
+                    formDataObj[key] = value;
+                });
+                
+                console.log('Submitting form with data:', formDataObj);
+                
+                // The form will submit normally in a new tab (target="_blank")
+                // No need for fetch/AJAX which causes CORS issues
+                // Reset button state after a short delay
+                // This gives the form time to submit before we reset the button
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }, 2000);
+            });
+            
+            // Test with cURL button handler
+            document.getElementById('testBtn')?.addEventListener('click', function() {
+                const form = document.getElementById('paymentForm');
+                const formData = new FormData(form);
+                const params = [];
+                
+                for (let [key, value] of formData.entries()) {
+                    params.push(`${key}=${encodeURIComponent(value)}`);
+                }
+                
+                const curlCommand = `curl -X POST \
+  "http://localhost:8088/sci/form" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "${params.join('&')}" \
+  -v`;
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(curlCommand).then(() => {
+                    const notice = document.createElement('div');
+                    notice.className = 'success';
+                    notice.textContent = 'cURL command copied to clipboard!';
+                    debugInfo.insertBefore(notice, debugInfo.firstChild);
+                    
+                    // Remove notice after 3 seconds
+                    setTimeout(() => {
+                        if (notice.parentNode === debugInfo) {
+                            debugInfo.removeChild(notice);
+                        }
+                    }, 3000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Could not copy to clipboard. Please copy manually.');
+                    console.log('cURL command:', curlCommand);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+[2025-08-09 07:01:51] SUCCESS: Payment completed successfully. Array
+(
+)
+
+[2025-08-09 07:02:00] FAIL: Payment failed. Array
+(
+)
+
+[2025-08-09 07:02:05] Received IPN: Array
+(
+)
+
+[2025-08-09 07:02:05] Invalid hash for transaction ID: 
+[2025-08-09 07:02:05] IPN Processing Result: INVALID HASH
+[2025-08-09 07:02:05] ----------------------------------------
+[2025-08-09 07:03:46] SUCCESS: Payment completed successfully. Array
+(
+)
+
+[2025-08-09 07:03:50] FAIL: Payment failed. Array
+(
+)
+
+[2025-08-09 07:09:04] FAIL: Payment failed. Array
+(
+)
+
+[2025-08-09 07:10:25] Received IPN: Array
+(
+    [amount] => 2.00
+    [fee] => 0.05
+    [total] => 2.05
+    [currency] => debit_base
+    [payer] => testtest
+    [receiver] => ekhalti
+    [status] => Confirmed
+    [date] => 2025-08-09 12:55:14
+    [id_transfer] => 295932
+    [merchant_name] => UnelmaMovie
+    [merchant_id] => 7
+    [balance] => 33923.74
+    [item_name] => Test Product
+    [custom] => test123
+    [hash] => 7A6D109F10BF39C072BCA150FE01C5AA
+)
+
+[2025-08-09 07:10:25] Invalid hash for transaction ID: 295932
+[2025-08-09 07:10:25] IPN Processing Result: INVALID HASH
+[2025-08-09 07:10:25] ----------------------------------------
+[2025-08-09 07:10:30] SUCCESS: Payment completed successfully. Array
+(
+)
+
+[2025-08-09 07:16:00] [IP: 127.0.0.1] [POST /ipn_handler.php] ===== IPN PROCESSING STARTED =====
+[2025-08-09 07:16:00] [IP: 127.0.0.1] [POST /ipn_handler.php] Server Info
+Data: Array
+(
+    [PHP_SELF] => /ipn_handler.php
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [HTTP_USER_AGENT] => curl/8.7.1
+    [REMOTE_ADDR] => 127.0.0.1
+)
+
+[2025-08-09 07:16:00] [IP: 127.0.0.1] [POST /ipn_handler.php] Received Request Data
+Data: Array
+(
+    [GET] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+            [test] => 1
+            [total] => 10.00
+            [date] => 20230809
+            [id_transfer] => TEST123
+            [hash] => TESTHASH
+        )
+
+    [FILES] => Array
+        (
+        )
+
+    [INPUT] => test=1&total=10.00&date=20230809&id_transfer=TEST123&hash=TESTHASH
+)
+
+[2025-08-09 07:16:00] [IP: 127.0.0.1] [POST /ipn_handler.php] Test request received
+[2025-08-09 07:18:29] [IP: 127.0.0.1] [POST /ipn_handler.php] ===== IPN PROCESSING STARTED =====
+[2025-08-09 07:18:29] [IP: 127.0.0.1] [POST /ipn_handler.php] Server Info
+Data: Array
+(
+    [PHP_SELF] => /ipn_handler.php
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [HTTP_USER_AGENT] => curl/8.7.1
+    [REMOTE_ADDR] => 127.0.0.1
+)
+
+[2025-08-09 07:18:29] [IP: 127.0.0.1] [POST /ipn_handler.php] Received Request Data
+Data: Array
+(
+    [GET] => Array
+        (
+        )
+
+    [POST] => Array
+        (
+            [total] => 10.00
+            [date] => 20230809
+            [id_transfer] => TEST123
+            [hash] => 34B16A66250092846F0F96824DB35982
+        )
+
+    [FILES] => Array
+        (
+        )
+
+    [INPUT] => total=10.00&date=20230809&id_transfer=TEST123&hash=34B16A66250092846F0F96824DB35982
+)
+
+[2025-08-09 07:18:29] [IP: 127.0.0.1] [POST /ipn_handler.php] Hash Verification
+Data: Array
+(
+    [hash_string] => 10.00:t43t43t34t43t34t6545845:20230809:TEST123
+    [received_hash] => 34B16A66250092846F0F96824DB35982
+    [calculated_hash] => 34B16A66250092846F0F96824DB35982
+    [match] => YES
+)
+
+[2025-08-09 07:18:29] [IP: 127.0.0.1] [POST /ipn_handler.php] Payment confirmed
+Data: Array
+(
+    [transaction_id] => TEST123
+    [amount] => 10.00
+    [date] => 20230809
+)
+
+[2025-08-09 07:18:29] [IP: 127.0.0.1] [POST /ipn_handler.php] Payment processed successfully
+[2025-08-09 07:18:29] [IP: 127.0.0.1] [POST /ipn_handler.php] ===== IPN PROCESSING COMPLETED =====
+
